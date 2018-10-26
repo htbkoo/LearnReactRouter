@@ -1,11 +1,21 @@
+import {mount} from 'enzyme';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import {MemoryRouter} from "react-router";
+
 import App from './App';
+import NavBar from "./NavBar";
 
 describe('<App/>', function () {
-    it('renders without crashing', function () {
-        const div = document.createElement('div');
-        ReactDOM.render(<App/>, div);
-        ReactDOM.unmountComponentAtNode(div);
+    it('should test react-router', function () {
+        // given
+        // when
+        const wrapper = mount(
+            <MemoryRouter initialEntries={["/"]}>
+                <App/>
+            </MemoryRouter>
+        );
+
+        // then
+        expect(wrapper.find(NavBar)).toHaveLength(1);
     });
 });
